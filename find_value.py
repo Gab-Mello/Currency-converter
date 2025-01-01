@@ -1,11 +1,10 @@
 
 import requests
-from bs4 import BeautifulSoup
 
-link = 'https://www.google.com/search?q=cota%C3%A7%C3%A3o+atual+dolar+hoje'
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'}
+link = 'https://economia.awesomeapi.com.br/json/last/USD-BRLPTAX?token=da63e27db5a65f572a526138a343c51ee95989e7736c2297c6bda71c946a79b0'
 
-requisicao = requests.get(link,headers=headers)
-soup = BeautifulSoup(requisicao.text,'html.parser')
-cotacao = soup.find('span',class_='SwHCTb')
-cotacao = cotacao['data-value']
+request = requests.get(link)
+cotacao = request.json()['USDBRLPTAX']['bid']
+
+
+
